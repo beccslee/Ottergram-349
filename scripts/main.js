@@ -7,7 +7,9 @@ const THUMBNAIL_LINK_SELECTOR = '[data-image-role="trigger"]';
 const HIDDEN_DETAIL_CLASS = 'hidden-detail';
 const TINY_EFFECT_CLASS = 'is-tiny';
 const ESC_KEY = 27;
-const ul = document.querySelector('.thumbnail-list');
+const RIGHT_ARROW_KEY = 39;
+const LEFT_ARROW_KEY = 37;
+const UL = document.querySelector('.thumbnail-list');
 let parentElement;
 
 const setDetails = (imageUrl, titleText) => {
@@ -68,6 +70,10 @@ const addKeyPressHandler = () => {
         console.log(e.keyCode);
         if (e.keyCode === ESC_KEY) {
             hideDetails();
+        } else if (e.keyCode === RIGHT_ARROW_KEY) {
+            onClickNext();
+        } else if (e.keyCode === LEFT_ARROW_KEY) {
+            onClickPrev();
         }
     });
 };
@@ -78,7 +84,7 @@ const onClickNext = () => {
         setDetailsFromThumb(parentElement.nextElementSibling.firstElementChild);
     } else {
         // Reached end of list so grab first child element in ul and set first element in the list item
-        setDetailsFromThumb(ul.firstElementChild.firstElementChild);
+        setDetailsFromThumb(UL.firstElementChild.firstElementChild);
     }
 };
 
@@ -88,7 +94,7 @@ const onClickPrev = () => {
         setDetailsFromThumb(parentElement.previousElementSibling.firstElementChild);
     } else {
         // Reached beginning of list so grab last child element in ul and set first element in list item
-        setDetailsFromThumb(ul.lastElementChild.firstElementChild);
+        setDetailsFromThumb(UL.lastElementChild.firstElementChild);
     }
 };
 
